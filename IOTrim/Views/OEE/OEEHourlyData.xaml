@@ -1,0 +1,140 @@
+﻿<Page x:Class="IOTrim.Views.OEEHourlyData"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:wpftoolkit="clr-namespace:IOTrim.CustomControls"
+      xmlns:handy="https://handyorg.github.io/handycontrol"
+      xmlns:local="clr-namespace:IOTrim.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="950" d:DesignWidth="800"
+      Title="HourlyData">
+
+    <Grid Margin="20">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <wpftoolkit:ModernDateTimePicker x:Name="DatePicker"
+                          ShowTime="False"
+                         PickerWidth="340"
+                         PopupWidth="560"
+                         InputHeight="40"
+                         InputWidth="250"
+                         InputCornerRadius="5"
+                         InputBackground="{DynamicResource AppSurfaceBrush}"
+                         InputBorderBrush="{DynamicResource AppBorderBrush}"
+                         InputBorderThickness="1"
+                         InputTextBrush="{DynamicResource AppTextBrush}"
+                         Theme="Light"
+                         DisableFutureDates="True" Width="261"/>
+
+            <Button x:Name="DateSearchBtn" Content="Search" Style="{StaticResource SearchBtnStyle}" Click="DateSearchBtn_Click"/>
+            <Button x:Name="DateSearchExport" Content="Export" Background="{DynamicResource AppExportBrush}" Style="{StaticResource SearchBtnStyle}" Click="Export_Click"/>
+
+            <GroupBox Header="Filter"
+           Style="{StaticResource CardGroupBoxStyle}">
+
+                <StackPanel>
+
+                    <ComboBox x:Name="cbSorting" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="Sorting_Changed" Foreground="Black">
+                        <ComboBoxItem Content="All"/>
+                        <ComboBoxItem Content="Shift A"/>
+                        <ComboBoxItem Content="Shift B"/>
+                        <ComboBoxItem Content="Shift C"/>
+                    </ComboBox>
+
+                </StackPanel>
+
+            </GroupBox>
+
+        </StackPanel>
+        <Border Background="{DynamicResource AppSurfaceBrush}"
+                VerticalAlignment="Bottom"
+             CornerRadius="18"
+             Padding="14"
+             BorderBrush="{DynamicResource AppBorderBrush}"
+             BorderThickness="1">
+
+            <Grid>
+
+                <DataGrid x:Name="dgOeeHourly"
+                          Height="550"
+                          VerticalScrollBarVisibility="Hidden"
+                       Style="{StaticResource ModernDataGridStyle}"
+                       ColumnHeaderStyle="{StaticResource ModernHeaderStyle}"
+                       CellStyle="{StaticResource ModernCellStyle}"
+                       AlternatingRowBackground="{DynamicResource AppDataGridAltRowBrush}"
+                       RowBackground="{DynamicResource AppDataGridRowBrush}">
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="SNo"
+                                         Binding="{Binding SNo}"
+                                         Width="60"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Hour"
+                                         Binding="{Binding Hour}"
+                                         Width="140"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Run time"
+                                         Binding="{Binding RunTime}"
+                                         Width="90"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Management Loss"
+                                         Binding="{Binding ManagementLoss}"
+                                         Width="160"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Idle"
+                                         Binding="{Binding Idle}"
+                                         Width="70"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Planned Downtime"
+                                         Binding="{Binding PlannedDowntime}"
+                                         Width="160"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Unplanned Downtime"
+                                         Binding="{Binding UnplannedDowntime}"
+                                         Width="190"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Good Part"
+                                         Binding="{Binding GoodPart}"
+                                         Width="115"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Bad Part"
+                                         Binding="{Binding BadPart}"
+                                         Width="105"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="A"
+                                         Binding="{Binding A}"
+                                         Width="60"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="P"
+                                         Binding="{Binding P}"
+                                         Width="60"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Q"
+                                         Binding="{Binding Q}"
+                                         Width="60"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="OEE"
+                                         Binding="{Binding OEE}"
+                                         Width="*"
+                                         ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

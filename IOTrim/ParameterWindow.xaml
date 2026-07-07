@@ -1,0 +1,84 @@
+﻿<Window x:Class="IOTrim.ParameterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Parameter"
+        Height="400"
+        Width="520"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{DynamicResource AppBackgroundBrush}">
+
+    <Grid Margin="24">
+
+
+        <StackPanel>
+
+            <!-- PLC IP -->
+            <TextBlock Text="PLC IP Address"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AppTextBrush}"/>
+
+            <Border Height="42"
+                        Margin="0,8,0,18"
+                        CornerRadius="12"
+                        Background="White"
+                        BorderBrush="#D7E3F5"
+                        BorderThickness="1">
+                <TextBox x:Name="txtPlcIp"
+                             Text="192.168.1.5"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Padding="12,0"
+                             FontSize="14"/>
+            </Border>
+
+            <!-- Port -->
+            <TextBlock Text="Port"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AppTextBrush}"/>
+
+            <Border Height="42"
+                        Margin="0,8,0,18"
+                        CornerRadius="12"
+                        Background="White"
+                        BorderBrush="#D7E3F5"
+                        BorderThickness="1">
+                <TextBox x:Name="txtPort"
+                             Text="502"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Padding="12,0"
+                             FontSize="14"/>
+            </Border>
+
+            <!-- OPC UA -->
+            <TextBlock Text="OPC UA URL"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource AppTextBrush}"/>
+
+            <Border Height="42"
+                        Margin="0,8,0,24"
+                        CornerRadius="12"
+                        Background="White"
+                        BorderBrush="#D7E3F5"
+                        BorderThickness="1">
+                <TextBox x:Name="txtOpcUrl"
+                             Text="opc.tcp://10.67.107.242:4841/freeopcua/server/"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             VerticalContentAlignment="Center"
+                             Padding="12,0"
+                             FontSize="14"/>
+            </Border>
+
+            <Button Content="Save Parameters"
+                        Width="170"
+                        Height="42"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource SearchBtnStyle}" Click="Save_Para_Button_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

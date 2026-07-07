@@ -1,0 +1,169 @@
+﻿<Page x:Class="IOTrim.Views.EMS.EMSHourlyData"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:wpftoolkit="clr-namespace:IOTrim.CustomControls"
+      xmlns:handy="https://handyorg.github.io/handycontrol"
+      xmlns:local="clr-namespace:IOTrim.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="950" d:DesignWidth="800"
+      Title="HourlyData">
+
+    <Grid Margin="20">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <wpftoolkit:ModernDateTimePicker x:Name="DatePicker"
+                          ShowTime="False"
+                         PickerWidth="340"
+                         PopupWidth="560"
+                         InputHeight="40"
+                         InputWidth="250"
+                         InputCornerRadius="5"
+                         InputBackground="{DynamicResource AppSurfaceBrush}"
+                         InputBorderBrush="{DynamicResource AppBorderBrush}"
+                         InputBorderThickness="1"
+                         InputTextBrush="{DynamicResource AppTextBrush}"
+                         Theme="Light"
+                         DisableFutureDates="True" Width="261"/>
+
+            <Button x:Name="DateSearchBtn" Content="Search" Style="{StaticResource SearchBtnStyle}" Click="DateSearchBtn_Click"/>
+            <Button x:Name="DateSearchExport" Content="Export" Background="{DynamicResource AppExportBrush}" Style="{StaticResource SearchBtnStyle}" Click="Export_Click"/>
+
+            <GroupBox Header="Filter"
+           Style="{StaticResource CardGroupBoxStyle}">
+
+                <StackPanel>
+
+                    <ComboBox x:Name="cbSorting" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="Sorting_Changed">
+                        <ComboBoxItem Content="All"/>
+                        <ComboBoxItem Content="Shift A"/>
+                        <ComboBoxItem Content="Shift B"/>
+                        <ComboBoxItem Content="Shift C"/>
+                    </ComboBox>
+
+                </StackPanel>
+
+            </GroupBox>
+
+        </StackPanel>
+        <Border Background="{DynamicResource AppSurfaceBrush}"
+                VerticalAlignment="Bottom"
+             CornerRadius="18"
+             Padding="14"
+             BorderBrush="{DynamicResource AppBorderBrush}"
+             BorderThickness="1">
+
+            <Grid>
+
+                <DataGrid x:Name="dgEMSHourly"
+                          Height="550"
+                          VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Visible"
+                       Style="{StaticResource ModernDataGridStyle}"
+                       ColumnHeaderStyle="{StaticResource ModernHeaderStyle}"
+                       CellStyle="{StaticResource ModernCellStyle}"
+                       AlternatingRowBackground="{DynamicResource AppDataGridAltRowBrush}"
+                       RowBackground="{DynamicResource AppDataGridRowBrush}">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="L1_L2_Volt"
+                    Binding="{Binding L1_L2_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L2_L3_Volt"
+                    Binding="{Binding L2_L3_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L3_L1_Volt"
+                    Binding="{Binding L3_L1_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L1_N_Volt"
+                    Binding="{Binding L1_N_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L2_N_Volt"
+                    Binding="{Binding L2_N_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L3_N_Volt"
+                    Binding="{Binding L3_N_Volt}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L1_C"
+                    Binding="{Binding L1_C}"
+                    Width="100"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L2_C"
+                    Binding="{Binding L2_C}"
+                    Width="100"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="L3_C"
+                    Binding="{Binding L3_C}"
+                    Width="100"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Power_Factor"
+                    Binding="{Binding Power_Factor}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Frequency"
+                    Binding="{Binding Frequency}"
+                    Width="100"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Active_Power"
+                    Binding="{Binding Active_Power}"
+                    Width="120"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Reactive_Power"
+                    Binding="{Binding Reactive_Power}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Apparent_Power"
+                    Binding="{Binding Apparent_Power}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Energy"
+                    Binding="{Binding Energy}"
+                    Width="100"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Ashift_Energy"
+                    Binding="{Binding Ashift_Energy}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Bshift_Energy"
+                    Binding="{Binding Bshift_Energy}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Cshift_Energy"
+                    Binding="{Binding Cshift_Energy}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+
+                        <DataGridTextColumn Header="Total_Energy"
+                    Binding="{Binding Total_Energy}"
+                    Width="130"
+                    ElementStyle="{StaticResource CenterTextStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

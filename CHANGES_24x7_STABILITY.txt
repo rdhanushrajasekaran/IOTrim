@@ -1,0 +1,42 @@
+IOTrim V19 - 24x7 Stability Update
+
+Updated areas:
+1. LogService
+   - Non-blocking queued logging.
+   - Flushes pending logs during shutdown.
+   - Logging failures cannot crash the application.
+   - UI log event is dispatched safely in background priority.
+
+2. OPC UA Service
+   - Implements IDisposable.
+   - Thread-safe session access.
+   - Safe disconnect/reconnect.
+   - KeepAlive warning logging added.
+   - Empty endpoint validation added.
+
+3. Production 200 ms OEE logger
+   - Implements IDisposable.
+   - Uses CancellationToken properly.
+   - Logs to ProductionLog every 200 ms.
+   - LogDateTime is taken from current PC time.
+   - Typed SQL parameters are used instead of AddWithValue.
+   - Reduced high-frequency logging to one health log per minute.
+   - OPC disconnection pauses logging instead of crashing the loop.
+
+4. EMS one-minute logger
+   - Implements IDisposable.
+   - Stop handles cancellation cleanly.
+
+5. Modbus polling service
+   - Implements IDisposable.
+   - Stop handles cancellation cleanly.
+   - MainWindow disposes the service during close.
+
+6. Application startup/shutdown
+   - Unobserved background task exceptions are logged and marked observed.
+   - Mutex is released/disposed on exit.
+   - MainWindow load errors are handled with a user-friendly warning.
+   - OEE logger is now stopped/disposed on close.
+
+Note:
+- The outgoing ZIP excludes bin/obj build outputs and font binaries. Restore/build in Visual Studio to regenerate outputs.

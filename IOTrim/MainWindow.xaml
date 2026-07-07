@@ -1,0 +1,299 @@
+<Window x:Class="IOTrim.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Icon="/Resources/Icons/favicon.ico"
+        xmlns:local="clr-namespace:IOTrim"
+        xmlns:loguc="clr-namespace:IOTrim.Views"
+        mc:Ignorable="d"
+        Title="IOTrim"
+        Height="450"
+        WindowState="Maximized"
+        Width="800"
+        Background="{DynamicResource AppBackgroundBrush}"
+        AllowsTransparency="False">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- decorative background blobs -->
+        <Ellipse Width="420" Height="420" Fill="{DynamicResource AppBlobOneBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-120,-140,0,0"/>
+        <Ellipse Width="360" Height="360" Fill="{DynamicResource AppBlobTwoBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-90,-110"/>
+        <Ellipse Width="170" Height="170" Fill="{DynamicResource AppBlobThreeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,120,0"/>
+
+        <Image Source="/Resources/Icons/delta_logo.png" Height="150" Opacity="0.3"/>
+
+        <!-- Company Logo - shown on every page -->
+        <Border Grid.Row="0"
+                Width="150"
+                Height="56"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,10,20,0"
+                CornerRadius="14"
+                Panel.ZIndex="20">
+
+
+            <Button Background="Transparent"
+        BorderThickness="0"
+        BorderBrush="Transparent"
+        Click="Img_Click"
+        FocusVisualStyle="{x:Null}"
+        Cursor="Hand">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+                <Image Source="/Resources/Icons/delta_logo.png"
+           Width="122"
+           Height="38"
+           Stretch="Uniform"/>
+
+            </Button>
+        </Border>
+
+        <!-- Main Content -->
+        <Border Grid.Row="0"
+        Margin="10"
+        Background="Transparent"
+        CornerRadius="10">
+
+            <Grid>
+
+                <Frame x:Name="MainFrm"
+                       Background="Transparent"
+                       NavigationUIVisibility="Hidden">
+                    <Frame.RenderTransform>
+                        <TranslateTransform x:Name="MainFrameTransform" Y="0"/>
+                    </Frame.RenderTransform>
+                </Frame>
+
+                <Border x:Name="LogPanelContainer"
+                Visibility="Collapsed"
+                Width="1000"
+                Height="600"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{DynamicResource AppOverlayBrush}"
+                CornerRadius="10"
+                Panel.ZIndex="10">
+
+                    <loguc:LogPanel x:Name="LogPanel"/>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <!-- Bottom Navigation -->
+        <Grid Grid.Row="1"
+              Margin="0,0,0,20">
+
+            <Label Content="" 
+       VerticalAlignment="Bottom" 
+       FontFamily="{StaticResource RushDriver}" 
+       FontSize="30" 
+       Foreground="{DynamicResource AppTextBrush}"
+       Margin="20,0,0,0">
+                <Label.Triggers>
+                    <!-- Triggers as soon as the Label loads/Window opens -->
+                    <EventTrigger RoutedEvent="Label.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Animates the Content property -->
+                                <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Content" Duration="0:0:1.4">
+                                    <!-- KeyTime format is Hours:Minutes:Seconds.Fraction -->
+                                    <DiscreteStringKeyFrame Value="I" KeyTime="0:0:0.2"/>
+                                    <DiscreteStringKeyFrame Value="IO" KeyTime="0:0:0.4"/>
+                                    <DiscreteStringKeyFrame Value="IO " KeyTime="0:0:0.6"/>
+                                    <DiscreteStringKeyFrame Value="IO T" KeyTime="0:0:0.8"/>
+                                    <DiscreteStringKeyFrame Value="IO TR" KeyTime="0:0:1.0"/>
+                                    <DiscreteStringKeyFrame Value="IO TRI" KeyTime="0:0:1.2"/>
+                                    <DiscreteStringKeyFrame Value="IO TRIM" KeyTime="0:0:1.4"/>
+                                </StringAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
+            
+            <Border Width="550"
+                    Height="60"
+                    Background="{DynamicResource AppSurfaceBrush}"
+                    CornerRadius="13"
+                    HorizontalAlignment="Center">
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15"
+                                      ShadowDepth="2"
+                                      Opacity="0.25"/>
+                </Border.Effect>
+
+                <Grid Margin="8,8,8,0" Height="44" VerticalAlignment="Top">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- HOME -->
+                    <Button Grid.Column="0" Tag="Home" Click="NavBtnClicked"
+                            Style="{StaticResource NavBarBtnStyle}" Grid.ColumnSpan="2" Height="44" Margin="0,0,94,0" VerticalAlignment="Top">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <Image Source="/Resources/Icons/ico_home.png"
+                                   Width="30"
+                                   Height="30"
+                                   Margin="0,0,8,0"
+                                   Style="{StaticResource AnimatedNavIconStyle}"/>
+
+                            <TextBlock Text="Home"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <!-- OEE -->
+                    <Button Grid.Column="1" Tag="OEE" Click="NavBtnClicked"
+                            Style="{StaticResource NavBarBtnStyle}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <Image Source="/Resources/Icons/ico_oee.png"
+                                   Width="30"
+                                   Height="30"
+                                   Margin="0,0,8,0"
+                                   Style="{StaticResource AnimatedNavIconStyle}"/>
+
+                            <TextBlock Text="OEE" 
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                    </Button>
+                    <!-- EMS -->
+                    <Button Grid.Column="2" Tag="EMS" Click="NavBtnClicked"
+                            Style="{StaticResource NavBarBtnStyle}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <Image Source="/Resources/Icons/ico_ems.png"
+                                   Width="30"
+                                   Height="30"
+                                   Margin="0,0,8,0"
+                                   Style="{StaticResource AnimatedNavIconStyle}"/>
+
+                            <TextBlock Text="EMS" 
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <!-- DATA -->
+                    <Button Grid.Column="3" Tag="Data" Click="NavBtnClicked"
+                            Style="{StaticResource NavBarBtnStyle}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <Image Source="/Resources/Icons/ico_data.png"
+                                   Width="30"
+                                   Height="30"
+                                   Margin="0,0,8,0"
+                                   Style="{StaticResource AnimatedNavIconStyle}"/>
+
+                            <TextBlock Text="Data"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <!-- Logs -->
+                    <Button Grid.Column="4" Tag="Logs" Click="NavBtnClicked"
+                            Style="{StaticResource NavBarBtnStyle}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <Image Source="/Resources/Icons/ico_logs.png"
+                                   Width="30"
+                                   Height="30"
+                                   Margin="0,0,8,0"
+                                   Style="{StaticResource AnimatedNavIconStyle}"/>
+
+                            <TextBlock Text="Logs"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                    </Button>
+
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- Theme -->
+            <Button x:Name="ThemeToggleBtn"
+                    Tag="Theme"
+                    Click="ThemeToggleBtn_Click"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,28,0"
+                    Style="{StaticResource ThemeToggleBtnStyle}">
+
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <TextBlock x:Name="ThemeIconText"
+                                       Text="🌙"
+                                       FontSize="22"
+                                       Margin="0,0,0,1"
+                                       VerticalAlignment="Center"/>
+
+                    <TextBlock x:Name="ThemeText"
+                                       Text="Dark"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                </StackPanel>
+
+            </Button>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

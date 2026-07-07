@@ -1,0 +1,23 @@
+<Application x:Class="IOTrim.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IOTrim"
+             StartupUri="SplashScreen.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Merged Dictionaries -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- App title font uses a built-in Windows font so no external font files are needed. -->
+            <FontFamily x:Key="RushDriver">pack://application:,,,/Resources/Fonts/RushDriver-Italic.otf#Rush Driver</FontFamily>
+            <FontFamily x:Key="Vipnagorgialla">pack://application:,,,/Resources/Fonts/Vipnagorgialla Rg It.otf#Vipnagorgialla</FontFamily>
+            <FontFamily x:Key="Rostex">pack://application:,,,/Resources/Fonts/Rostex-Regular.ttf#Rostex</FontFamily>
+            <FontFamily x:Key="RetroFloral">pack://application:,,,/Resources/Fonts/RetroFloral.ttf#Retro Floral</FontFamily>
+            <FontFamily x:Key="VarsityTeam">pack://application:,,,/Resources/Fonts/VarsityTeam-Bold.otf#Varsity Team</FontFamily>
+            <FontFamily x:Key="Sakana">pack://application:,,,/Resources/Fonts/Sakana.ttf#Sakana</FontFamily>
+            <FontFamily x:Key="Monar">pack://application:,,,/Resources/Fonts/Monar-Regular.otf#Monar</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
