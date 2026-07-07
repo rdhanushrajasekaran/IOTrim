@@ -72,7 +72,7 @@ namespace IOTrim
             {
                 LogService.AddLog("Main window loaded.");
 
-                if (!modGlobal.inSimulated)
+                if (!modGlobal.inSimulation)
                 {
 
                     modbusPollingService = new ModbusPollingService();
