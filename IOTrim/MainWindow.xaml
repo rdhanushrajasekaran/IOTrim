@@ -26,7 +26,7 @@
         <Ellipse Width="360" Height="360" Fill="{DynamicResource AppBlobTwoBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-90,-110"/>
         <Ellipse Width="170" Height="170" Fill="{DynamicResource AppBlobThreeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,120,0"/>
 
-        <Image Source="/Resources/Icons/delta_logo.png" Height="150" Opacity="0.3"/>
+   
 
         <!-- Company Logo - shown on every page -->
         <Border Grid.Row="0"

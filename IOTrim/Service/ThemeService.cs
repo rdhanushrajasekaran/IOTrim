@@ -53,6 +53,31 @@ namespace IOTrim.Service
                     SetBrush(resources, "AppGreenTextBrush", "#86EFAC");
                     SetBrush(resources, "AppExportBrush", "#EF4444");
                     SetBrush(resources, "AppWarningBrush", "#F59E0B");
+
+                    SetBrush(resources, "GlassPanelStartBrush", "#661E293B");
+                    SetBrush(resources, "GlassPanelMiddleBrush", "#551E293B");
+                    SetBrush(resources, "GlassPanelEndBrush", "#331E293B");
+
+                    SetBrush(resources, "GlassBorderStartBrush", "#55FFFFFF");
+                    SetBrush(resources, "GlassBorderMiddleBrush", "#33475569");
+                    SetBrush(resources, "GlassBorderEndBrush", "#2238BDF8");
+
+                    SetBrush(resources, "GlassInnerBrush", "#331E293B");
+                    SetBrush(resources, "GlassInnerBorderBrush", "#33475569");
+
+                    SetBrush(resources, "GlassGreenBrush", "#2634D399");
+                    SetBrush(resources, "GlassGreenBorderBrush", "#5534D399");
+
+                    SetBrush(resources, "GlassBlueBrush", "#2638BDF8");
+                    SetBrush(resources, "GlassBlueBorderBrush", "#5538BDF8");
+
+                    SetBrush(resources, "GlassOrangeBrush", "#26F97316");
+                    SetBrush(resources, "GlassOrangeBorderBrush", "#55F97316");
+
+                    SetGlassGradient(resources, "GlassPanelBrush", "#661E293B", "#551E293B", "#331E293B");
+                    SetGlassGradient(resources, "GlassPanelBorderBrush", "#55FFFFFF", "#33475569", "#2238BDF8");
+
+
                 }
                 else
                 {
@@ -84,6 +109,29 @@ namespace IOTrim.Service
                     SetBrush(resources, "AppGreenTextBrush", "#22C55E");
                     SetBrush(resources, "AppExportBrush", "#DC2626");
                     SetBrush(resources, "AppWarningBrush", "#F59E0B");
+
+                    SetBrush(resources, "GlassPanelStartBrush", "#EFFFFFFF");
+                    SetBrush(resources, "GlassPanelMiddleBrush", "#BFFFFFFF");
+                    SetBrush(resources, "GlassPanelEndBrush", "#75FFFFFF");
+
+                    SetBrush(resources, "GlassBorderStartBrush", "#FFFFFFFF");
+                    SetBrush(resources, "GlassBorderMiddleBrush", "#99FFFFFF");
+                    SetBrush(resources, "GlassBorderEndBrush", "#55D8E7FF");
+
+                    SetBrush(resources, "GlassInnerBrush", "#55FFFFFF");
+                    SetBrush(resources, "GlassInnerBorderBrush", "#88FFFFFF");
+
+                    SetBrush(resources, "GlassGreenBrush", "#3322C55E");
+                    SetBrush(resources, "GlassGreenBorderBrush", "#5522C55E");
+
+                    SetBrush(resources, "GlassBlueBrush", "#332563EB");
+                    SetBrush(resources, "GlassBlueBorderBrush", "#552563EB");
+
+                    SetBrush(resources, "GlassOrangeBrush", "#33F97316");
+                    SetBrush(resources, "GlassOrangeBorderBrush", "#55F97316");
+
+                    SetGlassGradient(resources, "GlassPanelBrush", "#EFFFFFFF", "#BFFFFFFF", "#75FFFFFF");
+                    SetGlassGradient(resources, "GlassPanelBorderBrush", "#FFFFFFFF", "#99FFFFFF", "#55D8E7FF");
                 }
 
                 ThemeChanged?.Invoke(null, theme);
@@ -93,6 +141,26 @@ namespace IOTrim.Service
             {
                 LogService.AddException("Apply application theme failed", ex);
             }
+        }
+
+        private static void SetGlassGradient(
+    ResourceDictionary resources,
+    string key,
+    string color1,
+    string color2,
+    string color3)
+        {
+            resources[key] = new LinearGradientBrush
+            {
+                StartPoint = new Point(0, 0),
+                EndPoint = new Point(1, 1),
+                GradientStops =
+        {
+            new GradientStop((Color)ColorConverter.ConvertFromString(color1), 0),
+            new GradientStop((Color)ColorConverter.ConvertFromString(color2), 0.45),
+            new GradientStop((Color)ColorConverter.ConvertFromString(color3), 1)
+        }
+            };
         }
 
         public static AppTheme ToggleTheme()

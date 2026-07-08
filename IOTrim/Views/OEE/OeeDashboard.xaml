@@ -4,6 +4,7 @@
       xmlns:chart="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       Background="Transparent">
 
+
     <Grid Margin="14">
 
         <Grid.RowDefinitions>
@@ -22,15 +23,7 @@
                 Grid.Column="0"
                 Grid.RowSpan="2"
                 Margin="0,0,8,0"
-                CornerRadius="24"
-                Padding="18"
-                Background="{DynamicResource AppSurfaceBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
-                BorderThickness="1">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-            </Border.Effect>
+                Style="{StaticResource GlassPanelStyle}">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,10 +32,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="16"
-                        Padding="12"
-                        Background="{DynamicResource AppBlueCardBrush}">
-
+                <Border Style="{StaticResource GlassInnerCardStyle}">
                     <StackPanel>
                         <TextBlock Text="Overall Equipment Effectiveness"
                                    FontSize="18"
@@ -63,23 +53,29 @@
                       Margin="0,10">
 
                     <chart:PieChart Width="290"
-                Height="360"
-                Series="{Binding GaugeSeries}"
-                Background="Transparent"
-                InitialRotation="-90"
-                MaxAngle="360"
-                MinValue="0"
-                MaxValue="100"
-                LegendPosition="Hidden"/>
+                                    Height="360"
+                                    Series="{Binding GaugeSeries}"
+                                    Background="Transparent"
+                                    InitialRotation="-90"
+                                    MaxAngle="360"
+                                    MinValue="0"
+                                    MaxValue="100"
+                                    LegendPosition="Hidden"/>
 
                     <Border Width="185"
                             Height="185"
                             CornerRadius="95"
-                            Background="{DynamicResource AppGaugeInnerBrush}"
-                            BorderBrush="{DynamicResource AppAccentBrush}"
-                            BorderThickness="0"
+                            Background="Black" 
+                            BorderBrush="#88FFFFFF"
+                            BorderThickness="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
+
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20"
+                                              ShadowDepth="2"
+                                              Opacity="0.12"/>
+                        </Border.Effect>
 
                         <StackPanel HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
@@ -100,9 +96,8 @@
                 </Grid>
 
                 <Border Grid.Row="2"
-                        CornerRadius="16"
-                        Padding="14,10"
-                        Background="{DynamicResource AppDataGridAltRowBrush}">
+                        Style="{StaticResource GlassInnerCardStyle}"
+                        Padding="14,10">
 
                     <Grid>
                         <TextBlock Text="OEE Percentage"
@@ -125,15 +120,7 @@
         <Border Grid.Row="0"
                 Grid.Column="1"
                 Margin="8,0,8,8"
-                CornerRadius="24"
-                Padding="18"
-                Background="{DynamicResource AppSurfaceBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
-                BorderThickness="1">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-            </Border.Effect>
+                Style="{StaticResource GlassPanelStyle}">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -142,10 +129,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="16"
-                        Padding="12"
-                        Background="{DynamicResource AppDataGridAltRowBrush}">
-
+                <Border Style="{StaticResource GlassInnerCardStyle}">
                     <Grid>
                         <TextBlock Text="Time Details"
                                    FontSize="18"
@@ -153,92 +137,62 @@
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource AppTextBrush}"/>
 
+                        <Grid Width="180"
+                              Height="36"
+                              HorizontalAlignment="Right">
 
-                        <Grid Width="180" HorizontalAlignment="Right"
-      Height="36">
+                            <Border Background="#55FFFFFF"
+                                    BorderBrush="#88FFFFFF"
+                                    BorderThickness="1"
+                                    CornerRadius="18"/>
 
-                            <!-- Background -->
-                            <Border Background="#EEF2F7"
-            CornerRadius="18"/>
-
-                            <!-- Sliding Indicator -->
-                            <Border x:Name="SelectionIndicator"
-            Width="60"
-            Margin="2"
-            HorizontalAlignment="Left"
-            CornerRadius="16"
-            Background="#2563EB"
-            RenderTransformOrigin="0.5,0.5">
-
+                            <Border x:Name="TimeUnitIndicator"
+                                    Width="58"
+                                    Height="30"
+                                    Margin="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    CornerRadius="15"
+                                    Background="#2563EB">
                                 <Border.RenderTransform>
-                                    <TranslateTransform x:Name="IndicatorTransform"/>
+                                    <TranslateTransform x:Name="TimeUnitIndicatorTransform" X="60"/>
                                 </Border.RenderTransform>
                             </Border>
 
-                            <Border HorizontalAlignment="Right"
-        VerticalAlignment="Center"
-        CornerRadius="18"
-        Padding="0"
-        Background="Transparent">
+                            <UniformGrid Columns="3">
+                                <Button x:Name="BtnSec"
+                                        Style="{StaticResource FlatButtonStyle}"
+                                        Content="sec"
+                                        Tag="0"
+                                        Click="TimeUnit_Click"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#111827"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"/>
 
-                                <Grid Width="180" Height="36">
+                                <Button x:Name="BtnMin"
+                                        Style="{StaticResource FlatButtonStyle}"
+                                        Content="min"
+                                        Tag="1"
+                                        Click="TimeUnit_Click"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="White"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"/>
 
-                                    <Border Background="#EEF2F7"
-                CornerRadius="8"/>
-
-                                    <Border x:Name="TimeUnitIndicator"
-                Width="58"
-                Height="30"
-                Margin="3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                CornerRadius="8"
-                Background="#2563EB">
-                                        <Border.RenderTransform>
-                                            <TranslateTransform x:Name="TimeUnitIndicatorTransform" X="60"/>
-                                        </Border.RenderTransform>
-                                    </Border>
-
-                                    <UniformGrid Columns="3">
-
-                                        <Button x:Name="BtnSec"
-                                                Style="{StaticResource FlatButtonStyle}"
-                    Content="sec"
-                    Tag="0"
-                    Click="TimeUnit_Click"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Foreground="#111827"
-                    FontSize="13"
-                    FontWeight="SemiBold"/>
-
-                                        <Button x:Name="BtnMin"
-                                                Style="{StaticResource FlatButtonStyle}"
-                    Content="min"
-                    Tag="1"
-                    Click="TimeUnit_Click"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Foreground="White"
-                    FontSize="13"
-                    FontWeight="SemiBold"/>
-
-                                        <Button x:Name="BtnHour"
-                    Content="hour"
-                    Tag="2"
-                                                Style="{StaticResource FlatButtonStyle}"
-                    Click="TimeUnit_Click"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Foreground="#111827"
-                    FontSize="13"
-                    FontWeight="SemiBold"/>
-
-                                    </UniformGrid>
-
-                                </Grid>
-                            </Border>
-
+                                <Button x:Name="BtnHour"
+                                        Style="{StaticResource FlatButtonStyle}"
+                                        Content="hour"
+                                        Tag="2"
+                                        Click="TimeUnit_Click"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#111827"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"/>
+                            </UniformGrid>
                         </Grid>
                     </Grid>
                 </Border>
@@ -284,9 +238,9 @@
                 </Grid>
 
                 <Border Grid.Row="2"
-                        Background="{DynamicResource AppBlueCardBrush}"
-                        CornerRadius="18"
-                        Padding="14,10">
+                        Style="{StaticResource GlassInnerCardStyle}"
+                        Padding="14,10"
+                        BorderBrush="#662563EB">
 
                     <Grid>
                         <TextBlock Text="Idle Time"
@@ -310,15 +264,7 @@
         <Border Grid.Row="0"
                 Grid.Column="2"
                 Margin="8,0,0,8"
-                CornerRadius="24"
-                Padding="18"
-                Background="{DynamicResource AppSurfaceBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
-                BorderThickness="1">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-            </Border.Effect>
+                Style="{StaticResource GlassPanelStyle}">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -327,10 +273,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="16"
-                        Padding="12"
-                        Background="{DynamicResource AppDataGridAltRowBrush}">
-
+                <Border Style="{StaticResource GlassInnerCardStyle}">
                     <TextBlock Text="Parts Summary"
                                FontSize="18"
                                FontWeight="Bold"
@@ -345,10 +288,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Border Background="{DynamicResource AppGreenCardBrush}"
-                            CornerRadius="18"
+                    <Border CornerRadius="18"
                             Padding="14"
-                            Margin="0,0,0,7">
+                            Margin="0,0,0,7"
+                            Background="#3322C55E"
+                            BorderBrush="#5522C55E"
+                            BorderThickness="1">
 
                         <Grid>
                             <TextBlock Text="Good Parts"
@@ -367,10 +312,12 @@
                     </Border>
 
                     <Border Grid.Row="1"
-                            Background="{DynamicResource AppOrangeCardBrush}"
                             CornerRadius="18"
                             Padding="14"
-                            Margin="0,7,0,0">
+                            Margin="0,7,0,0"
+                            Background="#33F97316"
+                            BorderBrush="#55F97316"
+                            BorderThickness="1">
 
                         <Grid>
                             <TextBlock Text="Bad Parts"
@@ -390,8 +337,7 @@
                 </Grid>
 
                 <Border Grid.Row="2"
-                        Background="{DynamicResource AppAccentLightBrush}"
-                        CornerRadius="20"
+                        Style="{StaticResource GlassInnerCardStyle}"
                         Padding="16">
 
                     <StackPanel>
@@ -417,15 +363,7 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Margin="8,8,0,0"
-                CornerRadius="24"
-                Padding="18"
-                Background="{DynamicResource AppSurfaceBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
-                BorderThickness="1">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-            </Border.Effect>
+                Style="{StaticResource GlassPanelStyle}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -439,7 +377,9 @@
                         Margin="0,0,8,0"
                         CornerRadius="18"
                         Padding="14"
-                        Background="{DynamicResource AppGreenCardBrush}">
+                        Background="#3322C55E"
+                        BorderBrush="#5522C55E"
+                        BorderThickness="1">
 
                     <Grid>
                         <Grid.RowDefinitions>
@@ -474,7 +414,9 @@
                         Margin="8,0"
                         CornerRadius="18"
                         Padding="14"
-                        Background="{DynamicResource AppBlueCardBrush}">
+                        Background="#332563EB"
+                        BorderBrush="#552563EB"
+                        BorderThickness="1">
 
                     <Grid>
                         <Grid.RowDefinitions>
@@ -509,7 +451,9 @@
                         Margin="8,0,0,0"
                         CornerRadius="18"
                         Padding="14"
-                        Background="{DynamicResource AppOrangeCardBrush}">
+                        Background="#33F97316"
+                        BorderBrush="#55F97316"
+                        BorderThickness="1">
 
                     <Grid>
                         <Grid.RowDefinitions>

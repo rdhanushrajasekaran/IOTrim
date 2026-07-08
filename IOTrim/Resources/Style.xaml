@@ -31,6 +31,38 @@
     <SolidColorBrush x:Key="AppExportBrush" Color="#DC2626"/>
     <SolidColorBrush x:Key="AppWarningBrush" Color="#F59E0B"/>
     <SolidColorBrush x:Key="ComboBoxTextColor" Color="Black"/>
+    <!-- Glassmorphism theme brushes -->
+    <SolidColorBrush x:Key="GlassPanelStartBrush" Color="#EFFFFFFF"/>
+    <SolidColorBrush x:Key="GlassPanelMiddleBrush" Color="#BFFFFFFF"/>
+    <SolidColorBrush x:Key="GlassPanelEndBrush" Color="#75FFFFFF"/>
+
+    <SolidColorBrush x:Key="GlassBorderStartBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="GlassBorderMiddleBrush" Color="#99FFFFFF"/>
+    <SolidColorBrush x:Key="GlassBorderEndBrush" Color="#55D8E7FF"/>
+
+    <SolidColorBrush x:Key="GlassInnerBrush" Color="#55FFFFFF"/>
+    <SolidColorBrush x:Key="GlassInnerBorderBrush" Color="#88FFFFFF"/>
+
+    <SolidColorBrush x:Key="GlassGreenBrush" Color="#3322C55E"/>
+    <SolidColorBrush x:Key="GlassGreenBorderBrush" Color="#5522C55E"/>
+
+    <SolidColorBrush x:Key="GlassBlueBrush" Color="#332563EB"/>
+    <SolidColorBrush x:Key="GlassBlueBorderBrush" Color="#552563EB"/>
+
+    <SolidColorBrush x:Key="GlassOrangeBrush" Color="#33F97316"/>
+    <SolidColorBrush x:Key="GlassOrangeBorderBrush" Color="#55F97316"/>
+
+    <LinearGradientBrush x:Key="GlassPanelBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#EFFFFFFF" Offset="0"/>
+        <GradientStop Color="#BFFFFFFF" Offset="0.45"/>
+        <GradientStop Color="#75FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GlassPanelBorderBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+        <GradientStop Color="#99FFFFFF" Offset="0.45"/>
+        <GradientStop Color="#55D8E7FF" Offset="1"/>
+    </LinearGradientBrush>
 
     <!-- Global defaults so newly added TextBlocks/Labels/inputs also follow theme immediately. -->
     <Style TargetType="TextBlock">
@@ -45,6 +77,33 @@
         <Setter Property="Foreground" Value="{DynamicResource AppTextBrush}"/>
         <Setter Property="Background" Value="{DynamicResource AppSurfaceStrongBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
+    </Style>
+
+
+
+    <Style x:Key="GlassPanelStyle" TargetType="Border">
+        <Setter Property="CornerRadius" Value="24"/>
+        <Setter Property="Padding" Value="18"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{DynamicResource GlassPanelBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassPanelBorderBrush}"/>
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="30"
+                              ShadowDepth="4"
+                              Opacity="0.17"
+                              Color="#000000"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GlassInnerCardStyle" TargetType="Border">
+        <Setter Property="CornerRadius" Value="18"/>
+        <Setter Property="Padding" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{DynamicResource GlassInnerBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassInnerBorderBrush}"/>
     </Style>
 
 

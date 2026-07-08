@@ -5,9 +5,21 @@
       Background="Transparent">
 
     <Page.Resources>
+
+
+
         <Storyboard x:Key="PageIntro">
-            <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.45"/>
-            <DoubleAnimation Storyboard.TargetName="RootMove" Storyboard.TargetProperty="Y" From="28" To="0" Duration="0:0:0.55">
+            <DoubleAnimation Storyboard.TargetName="Root"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.45"/>
+
+            <DoubleAnimation Storyboard.TargetName="RootMove"
+                             Storyboard.TargetProperty="Y"
+                             From="28"
+                             To="0"
+                             Duration="0:0:0.55">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -15,10 +27,25 @@
         </Storyboard>
 
         <Storyboard x:Key="StatusPulse" RepeatBehavior="Forever" AutoReverse="True">
-            <DoubleAnimation Storyboard.TargetName="RunGlow" Storyboard.TargetProperty="Opacity" From="0.25" To="0.9" Duration="0:0:0.75"/>
-            <DoubleAnimation Storyboard.TargetName="RunGlowScale" Storyboard.TargetProperty="ScaleX" From="1" To="1.2" Duration="0:0:0.75"/>
-            <DoubleAnimation Storyboard.TargetName="RunGlowScale" Storyboard.TargetProperty="ScaleY" From="1" To="1.2" Duration="0:0:0.75"/>
+            <DoubleAnimation Storyboard.TargetName="RunGlow"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.25"
+                             To="0.9"
+                             Duration="0:0:0.75"/>
+
+            <DoubleAnimation Storyboard.TargetName="RunGlowScale"
+                             Storyboard.TargetProperty="ScaleX"
+                             From="1"
+                             To="1.2"
+                             Duration="0:0:0.75"/>
+
+            <DoubleAnimation Storyboard.TargetName="RunGlowScale"
+                             Storyboard.TargetProperty="ScaleY"
+                             From="1"
+                             To="1.2"
+                             Duration="0:0:0.75"/>
         </Storyboard>
+
     </Page.Resources>
 
     <Page.Triggers>
@@ -28,8 +55,14 @@
         </EventTrigger>
     </Page.Triggers>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,60,0,20">
-        <Grid x:Name="Root" Opacity="1" Margin="20,20,20,12">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled"
+                  Margin="0,60,0,20">
+
+        <Grid x:Name="Root"
+              Opacity="1"
+              Margin="20,20,20,12">
+
             <Grid.RenderTransform>
                 <TranslateTransform x:Name="RootMove"/>
             </Grid.RenderTransform>
@@ -45,61 +78,95 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Grid.Column="0" 
-                    Style="{StaticResource MetricStripStyle}" CornerRadius="5" 
-                    BorderBrush="{DynamicResource AppGreenTextBrush}" Margin="0,0,12,12">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                </Border.Effect>
+            <!-- CURRENT SHIFT -->
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource GlassPanelStyle}"
+                    Margin="0,0,12,12"
+                    BorderBrush="{DynamicResource AppGreenTextBrush}"
+                    BorderThickness="0,0,0,1">
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid Width="38" Height="38" VerticalAlignment="Center">
-                        <Ellipse x:Name="RunGlow" Fill="{DynamicResource AppGreenTextBrush}" Opacity="0.35" RenderTransformOrigin="0.5,0.5">
+                    <Grid Width="42" Height="42" VerticalAlignment="Center">
+                        <Ellipse x:Name="RunGlow"
+                                 Fill="{DynamicResource AppGreenTextBrush}"
+                                 Opacity="0.35"
+                                 RenderTransformOrigin="0.5,0.5">
                             <Ellipse.RenderTransform>
                                 <ScaleTransform x:Name="RunGlowScale"/>
                             </Ellipse.RenderTransform>
                         </Ellipse>
-                        <Ellipse Width="14" Height="14" Fill="{DynamicResource AppGreenTextBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <Ellipse Width="14"
+                                 Height="14"
+                                 Fill="{DynamicResource AppGreenTextBrush}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
                     </Grid>
 
                     <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                        <TextBlock Text="CURRENT SHIFT" Style="{StaticResource RailTitleStyle}"/>
+                        <TextBlock Text="CURRENT SHIFT"
+                                   Style="{StaticResource RailTitleStyle}"/>
+
                         <Grid>
-                            <TextBlock Text="{Binding CurrentShift}" FontSize="28" FontWeight="Bold" Foreground="{DynamicResource AppTextBrush}" FontFamily="{StaticResource Sakana}" HorizontalAlignment="Left"/>
-                            <TextBlock Text="{Binding ShiftTimeText}" Foreground="{DynamicResource AppMutedTextBrush}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding CurrentShift}"
+                                       FontSize="28"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource AppTextBrush}"
+                                       FontFamily="{StaticResource Sakana}"
+                                       HorizontalAlignment="Left"/>
+
+                            <TextBlock Text="{Binding ShiftTimeText}"
+                                       Foreground="{DynamicResource AppMutedTextBrush}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,10,0"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
             </Border>
 
-            <Grid Grid.Row="0" Grid.Column="1" Margin="4,0,0,12">
+            <!-- TOP STATUS CARDS -->
+            <Grid Grid.Row="0"
+                  Grid.Column="1"
+                  Margin="4,0,0,12">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- PLC Status -->
-                <Border Grid.Column="0" Margin="0,0,6,0" Style="{StaticResource MetricStripStyle}" CornerRadius="10" BorderBrush="{DynamicResource AppBlueTextBrush}">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                    </Border.Effect>
+                <!-- PLC STATUS -->
+                <Border Grid.Column="0"
+                        Margin="0,0,8,0"
+                        BorderThickness="0,0,0,1"
+                        Style="{StaticResource GlassPanelStyle}"
+                        BorderBrush="{DynamicResource AppBlueTextBrush}">
+
                     <StackPanel>
-                        <TextBlock Text="PLC STATUS" Style="{StaticResource RailTitleStyle}"/>
-                        <TextBlock FontSize="28" FontWeight="Bold" FontFamily="{StaticResource Sakana}">
+                        <TextBlock Text="PLC STATUS"
+                                   Style="{StaticResource RailTitleStyle}"/>
+
+                        <TextBlock FontSize="28"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource Sakana}">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Text" Value="Disconnected"/>
                                     <Setter Property="Foreground" Value="{DynamicResource AppExportBrush}"/>
+
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsConnected}" Value="True">
                                             <Setter Property="Text" Value="Connected"/>
                                             <Setter Property="Foreground" Value="{DynamicResource AppGreenTextBrush}"/>
                                         </DataTrigger>
+
                                         <DataTrigger Binding="{Binding IsConnected}" Value="False">
                                             <Setter Property="Text" Value="Disconnected"/>
                                             <Setter Property="Foreground" Value="{DynamicResource AppExportBrush}"/>
@@ -111,23 +178,31 @@
                     </StackPanel>
                 </Border>
 
-                <!-- OEE Status -->
-                <Border Grid.Column="1" Margin="6,0,6,0" Style="{StaticResource MetricStripStyle}" CornerRadius="5" BorderBrush="{DynamicResource AppGreenTextBrush}">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                    </Border.Effect>
+                <!-- OEE STATUS -->
+                <Border Grid.Column="1"
+                        Margin="8,0,8,0"
+                        BorderThickness="0,0,0,1"
+                        Style="{StaticResource GlassPanelStyle}"
+                        BorderBrush="{DynamicResource AppGreenTextBrush}">
+
                     <StackPanel>
-                        <TextBlock Text="OEE STATUS" Style="{StaticResource RailTitleStyle}"/>
-                        <TextBlock FontSize="28" FontWeight="Bold" FontFamily="{StaticResource Sakana}">
+                        <TextBlock Text="OEE STATUS"
+                                   Style="{StaticResource RailTitleStyle}"/>
+
+                        <TextBlock FontSize="28"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource Sakana}">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Text" Value="Disconnected"/>
                                     <Setter Property="Foreground" Value="{DynamicResource AppExportBrush}"/>
+
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsOEEConnected}" Value="True">
                                             <Setter Property="Text" Value="Connected"/>
                                             <Setter Property="Foreground" Value="{DynamicResource AppGreenTextBrush}"/>
                                         </DataTrigger>
+
                                         <DataTrigger Binding="{Binding IsOEEConnected}" Value="False">
                                             <Setter Property="Text" Value="Disconnected"/>
                                             <Setter Property="Foreground" Value="{DynamicResource AppExportBrush}"/>
@@ -139,19 +214,31 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Station -->
-                <Border Grid.Column="2" Margin="6,0,0,0" Style="{StaticResource MetricStripStyle}" CornerRadius="5" BorderBrush="{DynamicResource AppOrangeTextBrush}">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                    </Border.Effect>
+                <!-- STATION -->
+                <Border Grid.Column="2"
+                        Margin="8,0,0,0"
+                        Style="{StaticResource GlassPanelStyle}"
+                        BorderBrush="{DynamicResource AppOrangeTextBrush}"
+                        BorderThickness="0,0,0,1">
+
                     <StackPanel>
-                        <TextBlock Text="STATION" Style="{StaticResource RailTitleStyle}"/>
-                        <TextBlock Text="" VerticalAlignment="Bottom" Margin="20,0,0,0" FontFamily="{StaticResource Sakana}" FontSize="28" FontWeight="Bold" Foreground="{DynamicResource AppOrangeTextBrush}">
+                        <TextBlock Text="STATION"
+                                   Style="{StaticResource RailTitleStyle}"/>
+
+                        <TextBlock Text=""
+                                   VerticalAlignment="Bottom"
+                                   Margin="20,0,0,0"
+                                   FontFamily="{StaticResource Sakana}"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource AppOrangeTextBrush}">
+
                             <TextBlock.Triggers>
                                 <EventTrigger RoutedEvent="TextBlock.Loaded">
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text" Duration="0:0:1.4">
+                                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text"
+                                                                           Duration="0:0:1.4">
                                                 <DiscreteStringKeyFrame Value="I" KeyTime="0:0:0.2"/>
                                                 <DiscreteStringKeyFrame Value="IO" KeyTime="0:0:0.4"/>
                                                 <DiscreteStringKeyFrame Value="IO " KeyTime="0:0:0.6"/>
@@ -168,20 +255,42 @@
                     </StackPanel>
                 </Border>
             </Grid>
-            
-            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource PanelLineStyle}" CornerRadius="10" Margin="0,0,12,12">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                </Border.Effect>
+
+            <!-- TODAY PRODUCTION -->
+            <Border Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource GlassPanelStyle}"
+                    Margin="0,0,12,12">
+
                 <StackPanel>
-                    <TextBlock Text="TODAY PRODUCTION" Style="{StaticResource RailTitleStyle}"/>
-                    <TextBlock Text="{Binding TotalCount}" Foreground="{DynamicResource AppTextBrush}" FontFamily="{StaticResource Sakana}" FontSize="46" FontWeight="Black" Margin="0,8,0,0"/>
-                    <TextBlock Text="Target 1,500 parts" Foreground="{DynamicResource AppMutedTextBrush}"/>
+                    <TextBlock Text="TODAY PRODUCTION"
+                               Style="{StaticResource RailTitleStyle}"/>
+
+                    <TextBlock Text="{Binding TotalCount}"
+                               Foreground="{DynamicResource AppTextBrush}"
+                               FontFamily="{StaticResource Sakana}"
+                               FontSize="46"
+                               FontWeight="Black"
+                               Margin="0,8,0,0"/>
+
+                    <TextBlock Text="Target 1,500 parts"
+                               Foreground="{DynamicResource AppMutedTextBrush}"/>
 
                     <Grid Height="34" Margin="0,18,0,4">
-                        <Border Background="{DynamicResource AppBorderBrush}" Height="9" VerticalAlignment="Center"/>
-                        <ProgressBar Value="{Binding TargetProgress}" Maximum="100" Style="{StaticResource ModernProgressBarStyle}" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding TargetProgressText}" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold"/>
+                        <Border Background="#33AEB8C8"
+                                Height="9"
+                                CornerRadius="8"
+                                VerticalAlignment="Center"/>
+
+                        <ProgressBar Value="{Binding TargetProgress}"
+                                     Maximum="100"
+                                     Style="{StaticResource ModernProgressBarStyle}"
+                                     VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding TargetProgressText}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"/>
                     </Grid>
 
                     <Grid Margin="0,16,0,0">
@@ -189,35 +298,73 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
                         <StackPanel>
-                            <TextBlock Text="OK" Foreground="{DynamicResource AppGreenTextBrush}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding OKCount}" FontSize="30" FontWeight="Bold"/>
+                            <TextBlock Text="OK"
+                                       Foreground="{DynamicResource AppGreenTextBrush}"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock Text="{Binding OKCount}"
+                                       FontSize="30"
+                                       FontWeight="Bold"/>
                         </StackPanel>
+
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right">
-                            <TextBlock Text="NG" Foreground="{DynamicResource AppOrangeTextBrush}" FontWeight="Bold" HorizontalAlignment="Right"/>
-                            <TextBlock Text="{Binding NGCount}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource AppOrangeTextBrush}"/>
+                            <TextBlock Text="NG"
+                                       Foreground="{DynamicResource AppOrangeTextBrush}"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Right"/>
+
+                            <TextBlock Text="{Binding NGCount}"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource AppOrangeTextBrush}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
             </Border>
 
-            <Border Grid.Row="2" Grid.Column="0" Background="{DynamicResource AppSurfaceStrongBrush}" CornerRadius="10" BorderBrush="{DynamicResource AppAccentBrush}" BorderThickness="6,0,0,0" Padding="18" Margin="0,0,12,0">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                </Border.Effect>
+            <!-- OEE GAUGE -->
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{StaticResource GlassPanelStyle}"
+                    BorderBrush="{DynamicResource AppAccentBrush}"
+                    BorderThickness="6,1,1,1"
+                    Margin="0,0,12,0">
+
                 <Grid>
-                    <chart:PieChart Series="{Binding GaugeSeries}" InitialRotation="-90" MaxAngle="360" MinValue="0" Background="Transparent" MaxValue="100" LegendPosition="Hidden"/>
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding OEEValueText}" FontSize="80" Foreground="{DynamicResource AppTextBrush}" FontFamily="{StaticResource Sakana}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="OEE %" Foreground="{DynamicResource AppMutedTextBrush}" FontSize="20" HorizontalAlignment="Center"/>
+                    <chart:PieChart Series="{Binding GaugeSeries}"
+                                    InitialRotation="-90"
+                                    MaxAngle="360"
+                                    MinValue="0"
+                                    Background="Transparent"
+                                    MaxValue="100"
+                                    LegendPosition="Hidden"/>
+
+                    <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <TextBlock Text="{Binding OEEValueText}"
+                                   FontSize="80"
+                                   Foreground="{DynamicResource AppTextBrush}"
+                                   FontFamily="{StaticResource Sakana}"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="OEE %"
+                                   Foreground="{DynamicResource AppMutedTextBrush}"
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource PanelLineStyle}" CornerRadius="10" Margin="4,0,0,0">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.15"/>
-                </Border.Effect>
+            <!-- PRODUCTION TREND -->
+            <Border Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Style="{StaticResource GlassPanelStyle}"
+                    Margin="4,0,0,0">
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -225,19 +372,31 @@
                     </Grid.RowDefinitions>
 
                     <Grid>
-                        <TextBlock Text="PRODUCTION TREND" Style="{StaticResource RailTitleStyle}"/>
-                        <TextBlock Text="Hourly OK / NG" HorizontalAlignment="Right" Foreground="{DynamicResource AppMutedTextBrush}"/>
+                        <TextBlock Text="PRODUCTION TREND"
+                                   Style="{StaticResource RailTitleStyle}"/>
+
+                        <Border HorizontalAlignment="Right"
+                                Padding="10,4"
+                                CornerRadius="12"
+                                Background="#55FFFFFF"
+                                BorderBrush="#88FFFFFF"
+                                BorderThickness="1">
+
+                            <TextBlock Text="Hourly OK / NG"
+                                       Foreground="{DynamicResource AppMutedTextBrush}"/>
+                        </Border>
                     </Grid>
-                    <chart:CartesianChart
-    Grid.Row="1"
-    Margin="0,10,0,0"
-    Series="{Binding ProductionSeries}"
-    XAxes="{Binding ProductionXAxes}"
-    YAxes="{Binding ProductionYAxes}"
-    Background="Transparent"
-    LegendPosition="Bottom"/>
+
+                    <chart:CartesianChart Grid.Row="1"
+                                          Margin="0,10,0,0"
+                                          Series="{Binding ProductionSeries}"
+                                          XAxes="{Binding ProductionXAxes}"
+                                          YAxes="{Binding ProductionYAxes}"
+                                          Background="Transparent"
+                                          LegendPosition="Bottom"/>
                 </Grid>
             </Border>
+
         </Grid>
     </ScrollViewer>
 </Page>
