@@ -8,7 +8,7 @@ namespace IOTrim
     class modGlobal
     {
         private static bool _isPLCConnected;
-        public static bool inSimulated = true;
+        public static bool inSimul = true;
         private static string _plcIP = string.Empty;
         private static string _plcPort = string.Empty;
         private static string _opcURL = string.Empty;
